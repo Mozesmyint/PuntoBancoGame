@@ -141,7 +141,8 @@ public class GameManager {
 		
 		switch (option) {
 		case 't':
-			FindTopPlayer();
+			Player pla = FindTopPlayer();
+			appMen.showPlayer(pla);
 			break;
 		case 's':
 			String name = appMen.promptName();		//method to ask the user for a name which is then used to search the text file to display a name, balance, number of wins
@@ -166,9 +167,22 @@ public class GameManager {
 		return ply;
 	}
 
-	public void FindTopPlayer() throws Exception {
+	public Player FindTopPlayer() throws Exception {
+		Player pla = null;
+		int topP = 0;
 		
+		for(Player p: players) {
+			if(p.getNumOfWins() > topP) { //searching through the array from the given name from user input
+				topP = p.getNumOfWins();
+			}
 		}
+		for(Player d: players) {
+			if(d.getNumOfWins() == (topP))
+				pla = d;
+			break;
+		}
+		return pla;
+	}
 
 	private void Save() throws IOException {
 		File info = new File(FILE_PATH);
