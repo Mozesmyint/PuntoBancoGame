@@ -73,7 +73,9 @@ public class Player {
 		}else {
 			balance -= currentBet;
 		}
-	}	
+	}
+	
+	
 }
 
 
