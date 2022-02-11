@@ -17,10 +17,10 @@ public class PuntoBancoGame {
 	public String whoWon(int bankerAmount, int playerAmount){
 
         if(playerAmount > bankerAmount){
-            // player natural win
+            // player win
             return "p";
         } else if(playerAmount < bankerAmount){
-            // banker natural win
+            // banker win
             return "b";
         } else{
             // draw

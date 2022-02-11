@@ -13,12 +13,14 @@ public class Player {
 	
 	int STARTERFUNDS = 100;
 	
+	//creating copy constructor
 	public Player(String name, int balance, int numofWins) {
 		this.name = name;
 		this.balance = balance;
 		this.numOfWins = numofWins;
 	}
 	
+	//getters and setters for later usage
 	public String getName() {
 		return name;
 	}
@@ -43,15 +45,17 @@ public class Player {
 		this.numOfWins = numOfWins;
 	}
 	
+	//formatting for when user information is called
 	public String toString() {
 		return " Name: " + name + " Balance: $" + balance + " Number of Wins: " + numOfWins;
 	}
 	
+	//formatting for how information gets saved
 	public String format() {
 		return name + "," + balance + "," + numOfWins;
 	}
 	
-	public void addFunds(double funds) {
+	public void addFunds(double funds) {		//used to add money to balance for when the user wins a bet
 		if (funds < 0) {
 			return;
 		}
@@ -63,8 +67,8 @@ public class Player {
 		}
 	}
 	
-	public void subtractFunds(double currentBet) {
-		if (currentBet < 0 || currentBet > balance) {		// Changes nothing if the funds are negative or exceed the balance
+	public void subtractFunds(double currentBet) {			//used to subtract money to balance for when the user loses a bet
+		if (currentBet < 0 || currentBet > balance) {
 			return;
 		}else {
 			balance -= currentBet;

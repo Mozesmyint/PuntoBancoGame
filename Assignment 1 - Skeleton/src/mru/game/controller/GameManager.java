@@ -82,23 +82,25 @@ public class GameManager {
 		String name = appMen.promptName();
 		Player p = SearchByName(name);
 		
+		//if the player name doesn't exist it gets newly generated with $100 to start
 		if (p == null) {
 			players.add(new Player(name , 100 , 0));
 			
 			p = SearchByName(name);
 		}
 		
-		appMen.welcomeMsg(name, p.getBalance());
+		//calling methods in order of what's needed
+		appMen.welcomeMsg(name, p.getBalance());		//welcome message that also displays the balance that is assigned to the name
 		
-		String choice = appMen.showGameMenu();
+		String choice = appMen.showGameMenu();		//taking user input which is then used for betting later
 		
-		playerHand.add(appMen.getCurrent());
+		playerHand.add(appMen.getCurrent());		//adding the initial cards to player and banker hands
 		playerHand.add(appMen.getCurrent());
 		
 		bankerHand.add(appMen.getCurrent());
 		bankerHand.add(appMen.getCurrent());
 		
-		Card c = appMen.getCurrent();
+		Card c = appMen.getCurrent();		//deciding whether to draw a third card or not
 		
 		if(PBG.evaluateBankerDraw(playerHand, c)) {
 			bankerHand.add(c);
@@ -108,11 +110,11 @@ public class GameManager {
 			playerHand.add(c);
 		}
 		
-		currentBet = appMen.getBet(p.getBalance());
+		currentBet = appMen.getBet(p.getBalance());		//taking user input for amount of money bet
 		
 		
-		String winner = appMen.PBGMenu(bankerHand, playerHand);
-		
+		String winner = appMen.PBGMenu(bankerHand, playerHand);		//calling method to see who wins which is then put through 
+																	//.equals methods to figure out if the user guessed correctly
 		if(choice.equals(winner)) {
 			for (Player pl : players) {
 				if(pl.getName().equals(name)) {
@@ -129,10 +131,11 @@ public class GameManager {
 			p.subtractFunds(currentBet);
 		}
 		
-		playerHand = new ArrayList<>();
-		bankerHand = new ArrayList<>();
+		playerHand = new ArrayList<>();			//resetting the player and banks hands so that if the user 
+		bankerHand = new ArrayList<>();			//wants a game right after the cards from the last game are shuffled
 	}
 
+	//method to open a second menu related to searching for specifics
 	private void Search() throws Exception {
 		char option = appMen.showSubMenu();
 		
@@ -141,12 +144,12 @@ public class GameManager {
 			FindTopPlayer();
 			break;
 		case 's':
-			String name = appMen.promptName();
+			String name = appMen.promptName();		//method to ask the user for a name which is then used to search the text file to display a name, balance, number of wins
 			Player ply = SearchByName(name);
 			appMen.showPlayer(ply);
 			break;
 		case 'b':
-			
+			launchApplication();		//reseting the program to main menu
 			break;
 		}
 	}
@@ -155,7 +158,7 @@ public class GameManager {
 		Player ply = null;
 		
 		for(Player p: players) {
-			if(p.getName().equals(name)) {
+			if(p.getName().equals(name)) {		//searching through the array from the given name from user input
 				ply = p;
 				break;
 			}
@@ -172,7 +175,7 @@ public class GameManager {
 		
 		System.out.println("Thank you for playing!");
 		
-		if (info.exists()) {
+		if (info.exists()) {							//creating a fallback if the file doesn't exist it will be newly created
 		PrintWriter pw = new PrintWriter(info);
 		
 		for(Player p: players) {
@@ -183,7 +186,7 @@ public class GameManager {
 			System.out.println("Save file does not exist");
 		}
 		
-		System.exit(0);
+		System.exit(0);		//ending the program
 	}
 
 	private void loadData() throws Exception {
@@ -192,7 +195,7 @@ public class GameManager {
 		String[] splittedLine;
 		
 		if (info.exists()) {
-			Scanner fileReader = new Scanner(info);
+			Scanner fileReader = new Scanner(info);			//method for reading the text file upon launch of program
 			
 			while(fileReader.hasNextLine()) {
 				currentLine = fileReader.nextLine();

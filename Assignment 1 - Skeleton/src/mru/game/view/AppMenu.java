@@ -35,7 +35,7 @@ public class AppMenu {
 		
 		String option = input.next();
 		
-		while(!option.equals("1") && !option.equals("2") && !option.equals("3")) {
+		while(!option.equals("1") && !option.equals("2") && !option.equals("3")) {			//general user validation of input
 			System.out.print("Invalid response, Please enter a number here: ");
 			option = input.next();
 			
@@ -84,7 +84,7 @@ public class AppMenu {
 	
 	public Card getCurrent() {
 		Card current = currentCard;
-		currentCard = myDeck.getDeck().remove(i++);
+		currentCard = myDeck.getDeck().remove(i++);			//method for drawing cards
 		
 		return current;
 	}
@@ -109,8 +109,8 @@ public class AppMenu {
 				player += hand2.get(i).toString();
 			}
 			line += player;
-			for(int j = 0; j < 39 - player.length(); j++) {
-				line += " ";
+			for(int j = 0; j < 39 - player.length(); j++) {				//formatting the table where the game is shown and so that it 
+				line += " ";											//keeps the same dimensions no matter what card is drawn
 			}
 			line += "|";
 			if(hand1.size() > i) {
@@ -163,10 +163,6 @@ public class AppMenu {
 		System.out.println("Sorry, you bet " + Name + "! You lost your bet!");
 	}
 	
-	public void topPlayer(Player ply) {
-		System.out.println(ply);
-	}
-	
 	public String promptName() {
 		System.out.print("Enter a name here: ");
 		String name = input.next();
@@ -181,8 +177,8 @@ public class AppMenu {
 		int bet = 0;
 		
 		System.out.println("How much would you like to bet?");
-		bet = input.nextInt();
-		
+		bet = input.nextInt();										//method for user betting whereby if they try betting more than what they have it takes everything and
+																	//if they bet an invalid number it is put to zero instead
 		if (bet < 0) {
 			System.out.println("You can't bet a negative amount therefore, the bet will be defaulted to $0.00");
 			bet = 0;
