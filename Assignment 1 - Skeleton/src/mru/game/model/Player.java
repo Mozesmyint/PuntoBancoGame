@@ -51,7 +51,7 @@ public class Player {
 		return name + "," + balance + "," + numOfWins;
 	}
 	
-	public void addFunds(int funds) {
+	public void addFunds(double funds) {
 		if (funds < 0) {
 			return;
 		}
@@ -63,11 +63,11 @@ public class Player {
 		}
 	}
 	
-	public void subtractFunds(int funds) {
-		if (funds < 0 || funds > balance) {		// Changes nothing if the funds are negative or exceed the balance
+	public void subtractFunds(double currentBet) {
+		if (currentBet < 0 || currentBet > balance) {		// Changes nothing if the funds are negative or exceed the balance
 			return;
 		}else {
-			balance -= funds;
+			balance -= currentBet;
 		}
 	}	
 }

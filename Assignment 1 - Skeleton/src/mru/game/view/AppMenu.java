@@ -136,6 +136,10 @@ public class AppMenu {
 		return PBG.whoWon(bankerTotal, playerTotal); 
 	
 	}
+	
+	public void TopMenu() {
+		
+	}
 
 	public void CongMsg(String choice) {
 		String Name = null;
@@ -173,9 +177,20 @@ public class AppMenu {
 		System.out.println(ply);
 	}
 	
-	public int askBet() {
-		System.out.println("How much do you want to bet this round? ");
-		int bet = input.nextInt();
+	public int getBet(int playerBalance) {
+		int bet = 0;
+		
+		System.out.println("How much would you like to bet?");
+		bet = input.nextInt();
+		
+		if (bet < 0) {
+			System.out.println("You can't bet a negative amount therefore, the bet will be defaulted to $0.00");
+			bet = 0;
+		}
+		if (bet > playerBalance) {
+			System.out.println("You don't have enough money to bet this amount therefore, your entire balance will be bet instead");
+			bet = playerBalance;
+		}
 		
 		return bet;
 	}

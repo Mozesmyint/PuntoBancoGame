@@ -108,12 +108,10 @@ public class GameManager {
 			playerHand.add(c);
 		}
 		
-		currentBet = appMen.askBet();
+		currentBet = appMen.getBet(p.getBalance());
+		
 		
 		String winner = appMen.PBGMenu(bankerHand, playerHand);
-		
-		betWinnings(winner);
-		
 		
 		if(choice.equals(winner)) {
 			for (Player pl : players) {
@@ -121,10 +119,14 @@ public class GameManager {
 					int num = pl.getNumOfWins();
 					pl.setnumOfWins(num + 1);
 					appMen.CongMsg(choice);
+					System.out.println("You have earned two times your bet!");
+					p.addFunds(2*currentBet);
 				}
 			}
 		} else if (choice != winner) {
 			appMen.SorryMsg(choice);
+			System.out.println("You have lost this bet, no money was earned");
+			p.subtractFunds(currentBet);
 		}
 		
 		playerHand = new ArrayList<>();
@@ -202,18 +204,6 @@ public class GameManager {
 		}
 	}
 	
-	public double betWinnings(String winner) {
-		double winnings = 0;
-		
-		if(bettingOn == winner && winner == "b") {
-			winnings += currentBet;
-		} else if(bettingOn == winner && winner == "t") {
-			winnings += currentBet*8;
-		} else if(bettingOn == winner && winner == "p") {
-			winnings += currentBet;
-		} else if(bettingOn != winner) {
-			winnings -= currentBet;
-		}
-		return winnings;
-	}
+	
 }
+
