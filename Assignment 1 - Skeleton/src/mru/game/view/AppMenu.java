@@ -136,10 +136,6 @@ public class AppMenu {
 		return PBG.whoWon(bankerTotal, playerTotal); 
 	
 	}
-	
-	public void TopMenu() {
-		
-	}
 
 	public void CongMsg(String choice) {
 		String Name = null;

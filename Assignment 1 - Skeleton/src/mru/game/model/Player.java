@@ -13,7 +13,7 @@ public class Player {
 	
 	int STARTERFUNDS = 100;
 	
-	//creating copy constructor
+	//creating constructor
 	public Player(String name, int balance, int numofWins) {
 		this.name = name;
 		this.balance = balance;

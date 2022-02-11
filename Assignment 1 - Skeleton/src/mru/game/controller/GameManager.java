@@ -72,13 +72,15 @@ public class GameManager {
 				break;
 			case 3:
 				Save();
+				System.out.println("Thank you for playing!");	
 				flag = false;
+				System.exit(0);				//ending the program
 			}
 		}
 		
 	}
 	
-	private void playGame() {
+	private void playGame() throws Exception {
 		String name = appMen.promptName();
 		Player p = SearchByName(name);
 		
@@ -133,6 +135,7 @@ public class GameManager {
 		
 		playerHand = new ArrayList<>();			//resetting the player and banks hands so that if the user 
 		bankerHand = new ArrayList<>();			//wants a game right after the cards from the last game are shuffled
+		Save();
 	}
 
 	//method to open a second menu related to searching for specifics
@@ -141,7 +144,8 @@ public class GameManager {
 		
 		switch (option) {
 		case 't':
-			FindTopPlayer();
+			Player pla = FindTopPlayer();
+			appMen.showPlayer(pla);
 			break;
 		case 's':
 			String name = appMen.promptName();		//method to ask the user for a name which is then used to search the text file to display a name, balance, number of wins
@@ -166,14 +170,39 @@ public class GameManager {
 		return ply;
 	}
 
-	public void FindTopPlayer() throws Exception {
-		
-		}
+	public Player FindTopPlayer() throws Exception {
+		Player pla = null;
+		int topP = 0;
 
+		for(Player p: players) {
+			if(p.getNumOfWins() > topP) { //searching through the array from the given name from user input
+				topP = p.getNumOfWins();
+			}
+		}
+		for(Player d: players) {
+			if(d.getNumOfWins() == (topP))
+				pla = d;
+			break;
+		}
+		
+		return pla;
+	}
+	
+	public void DisplayTop() {
+		System.out.println("*** TOP 5 LEADERBOARD ***");
+	    int i = 0;
+	    while (i < 5 && i < players.size()) {
+	        System.out.println(players.get(i));		//just displays 5 people on the text file
+	        i++;
+	    }
+	    System.out.println("*** TOP 5 LEADERBOARD ***");
+		}
+	
+	
 	private void Save() throws IOException {
 		File info = new File(FILE_PATH);
 		
-		System.out.println("Thank you for playing!");
+		System.out.println("Saving...");
 		
 		if (info.exists()) {							//creating a fallback if the file doesn't exist it will be newly created
 		PrintWriter pw = new PrintWriter(info);
@@ -186,7 +215,7 @@ public class GameManager {
 			System.out.println("Save file does not exist");
 		}
 		
-		System.exit(0);		//ending the program
+		System.out.println("Saved!");
 	}
 
 	private void loadData() throws Exception {
@@ -206,7 +235,6 @@ public class GameManager {
 			fileReader.close();
 		}
 	}
-	
 	
 }
 

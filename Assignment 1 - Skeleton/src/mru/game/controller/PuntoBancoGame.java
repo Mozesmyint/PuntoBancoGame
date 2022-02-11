@@ -28,7 +28,7 @@ public class PuntoBancoGame {
         }
       }
 
-    // Take a hand and return how many points that hand is worth
+    // take a hand and return how many points that hand is worth
     public int handTotal(ArrayList<Card> hand){
         int total = 0;
 

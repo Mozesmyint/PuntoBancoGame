@@ -1,6 +1,8 @@
 package mru.Assignment1;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.ArrayList;
 
@@ -9,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import mru.game.controller.Card;
 import mru.game.controller.CardDeck;
 import mru.game.controller.PuntoBancoGame;
+import mru.game.model.Player;
 import mru.game.view.AppMenu;
 
 class PuntoBancoTest {
@@ -16,11 +19,11 @@ class PuntoBancoTest {
 	Card tester = new Card(5, "Diamonds");
 	CardDeck myDeck = new CardDeck();
 	Card currentCard = myDeck.getDeck().remove(0);
-	ArrayList<Card> playerHand;
-	ArrayList<Card> bankerHand;
-	AppMenu appMen;
+	ArrayList<Card> playerHand = new ArrayList<>();;
+	ArrayList<Card> bankerHand = new ArrayList<>();;
+	AppMenu appMen = new AppMenu();
 	PuntoBancoGame PBG;
-	
+	Player player = new Player("Jason", 100, 0);
 	
 	@Test
 	void testCard() {
@@ -48,47 +51,44 @@ class PuntoBancoTest {
 		playerHand.add(appMen.getCurrent());
 		
 		
+		assertEquals("Drawing method not working properly", 2, playerHand.size());
 		
 	}
 	
-	@Test
-	void testThirdCard() {
-		playerHand.add(appMen.getCurrent());
-		playerHand.add(appMen.getCurrent());
-		if(PBG.evaluatePlayerDraw(bankerHand)) {
-			playerHand.add(tester);
-		}
-		
-		
-	}
-	
-	@Test
-	void testDeck() {
-		
-		
-	}
 	
 	@Test
 	void testDeckShuffle() {
+		CardDeck CreateTest = new CardDeck();
 		
-		
-	}
-	
-	@Test
-	void testDeal() {
-		
+		assertNotEquals(CreateTest.getDeck(), myDeck.getDeck());
 		
 	}
 	
 	@Test
-	void testDealNewHand() {
+	void testDrawSameCard() {
 		
+		Card current1 = myDeck.getDeck().get(0);
+		Card current2 = myDeck.getDeck().get(5);
+		
+		
+		
+		assertFalse(current1.equals(current2));
 		
 	}
 	
 	@Test
-	void testBet() {
+	void testAddMoney() {
 		
+		player.addFunds(50);
+		assertEquals(player.getBalance(),150);
+		
+	}
+	
+	@Test
+	void testSubtractMoney() {
+		
+		player.subtractFunds(50);
+		assertEquals(player.getBalance(),50);
 		
 	}
 }
