@@ -2,5 +2,4 @@ Ali,75,10
 Eli,1000,15
 Jason,100,2
 Khosro,1639,18
-Mozes,369,4
-bob,240,2
+Mozes,169,4

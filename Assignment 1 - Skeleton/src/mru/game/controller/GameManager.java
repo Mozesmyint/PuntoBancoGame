@@ -173,7 +173,6 @@ public class GameManager {
 	public Player FindTopPlayer() throws Exception {
 		Player pla = null;
 		int topP = 0;
-<<<<<<< HEAD
 
 		for(Player p: players) {
 			if(p.getNumOfWins() > topP) { //searching through the array from the given name from user input
@@ -200,22 +199,6 @@ public class GameManager {
 		}
 	
 	
-=======
-		
-		for(Player p: players) {
-			if(p.getNumOfWins() > topP) { //searching through the array from the given name from user input
-				topP = p.getNumOfWins();
-			}
-		}
-		for(Player d: players) {
-			if(d.getNumOfWins() == (topP))
-				pla = d;
-			break;
-		}
-		return pla;
-	}
-
->>>>>>> 074cf3f0810603268a3acd7228d0523a60232066
 	private void Save() throws IOException {
 		File info = new File(FILE_PATH);
 		
