@@ -8,44 +8,81 @@ public class Player {
 	 */
 	
 	String name;
-	String id;
+	int balance;
 	int numOfWins;
 	
-	public Player(String name, String id, int numofWins) {
-		this.name = name;
-		this.id = id;
-		this.numOfWins = numofWins;
-	}
+	int STARTERFUNDS = 100;
 	
-	public void setName(String name) {
+	public Player(String name, int balance, int numofWins) {
 		this.name = name;
+		this.balance = balance;
+		this.numOfWins = numofWins;
 	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	public void setId(String id) {
-		this.id = id;
-	}
-	
-	public String getId() {
-		return id;
-	}
-	
-	public void setNumOfWins(int numOfWins) {
-		this.numOfWins = numOfWins;
+	public int getBalance() {
+		return balance;
 	}
 	
 	public int getNumOfWins() {
 		return numOfWins;
 	}
 	
+	public void setName(String Name) {
+		this.name = Name;
+	}
+	
+	public void setBalance(int Balance) {
+		this.balance = Balance;
+	}
+	
+	public void setnumOfWins(int numOfWins) {
+		this.numOfWins = numOfWins;
+	}
+	
 	public String toString() {
-		return "Name: " + name + "ID: " + id + "Number of Wins: " + numOfWins;
+		return " Name: " + name + " Balance: $" + balance + " Number of Wins: " + numOfWins;
 	}
 	
 	public String format() {
-		return name + ";" + id + ";" + numOfWins;
+		return name + "," + balance + "," + numOfWins;
 	}
+	
+	public void addFunds(int funds) {
+		if (funds < 0) {
+			return;
+		}
+		
+		if (funds + balance < 0) {
+			balance = STARTERFUNDS;
+		} else {
+			balance += funds;
+		}
+	}
+	
+	public void subtractFunds(int funds) {
+		if (funds < 0 || funds > balance) {		// Changes nothing if the funds are negative or exceed the balance
+			return;
+		}else {
+			balance -= funds;
+		}
+	}	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

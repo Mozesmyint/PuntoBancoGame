@@ -10,7 +10,7 @@ public class Card {
 	/**
 	 * rank represents the rank of the current card
 	 */
-	private int rank;
+	int rank;
 	
 	/**
 	 * suit represents the suit of the current card
